@@ -4,7 +4,8 @@ class Map(object):
 			"kitchen":Kitchen(),
 			"sofas":Sofas(),
 			"dancefloor":Dancefloor(),
-			"hallway":Hallway()
+			"hallway":Hallway(),
+			"garden":Garden()
 			}
 	
 	def open_room(self):
