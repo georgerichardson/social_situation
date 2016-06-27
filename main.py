@@ -1,0 +1,27 @@
+class Map(object):
+
+	rooms = {
+			"kitchen":Kitchen(),
+			"sofas":Sofas(),
+			"dancefloor":Dancefloor(),
+			"hallway":Hallway()
+			}
+	
+	def open_room(self):
+		
+		pass
+		
+
+class Engine(object):
+	
+	def the_time(self):
+	
+		pass
+	
+	def choose_room(self):
+	
+		pass
+
+	def play(self):
+	
+		pass
