@@ -26,3 +26,10 @@ class Engine(object):
 	def play(self):
 	
 		pass
+		
+		
+class Interaction(object):
+		
+	def __init__(self):
+	
+		pass
