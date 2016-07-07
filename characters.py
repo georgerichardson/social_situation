@@ -6,9 +6,10 @@ import names
 class Player(object):
 	# initialise player name and stats including contentment and alcohol level
 	def __init__(self):
-		self.ply_name = None
 		self.ply_stats = {"cont":randint(30,50),
-    					"alc":randint(20,40)}
+    					"alc":randint(20,40)
+    					}
+		self.player_name()
 	
 	# allow the user to enter their own name
 	def player_name(self):
