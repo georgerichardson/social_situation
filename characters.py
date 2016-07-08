@@ -1,7 +1,10 @@
 from random import randint
 import names
 
+#######################
 ## PLAYER GENERATION ##
+#######################
+
 # Class for the player
 class Player(object):
 	# initialise player name and stats including contentment and alcohol level
@@ -21,8 +24,12 @@ class Player(object):
 	def __str__(self):
 		print self.ply_name
 		print self.ply_stats("alc")
-		
-## CHARACTERISTIC PARENT ##		
+
+
+#####################		
+## CHARACTERISTICS ##		
+#####################
+
 class Characteristic(object):
 
 	def __init__(self, ch_name, ply_name):
@@ -228,10 +235,11 @@ class Boring(Characteristic):
 		cont_chg = -20
 		return cont_chg
 
-#class StoryTopper(Characteristic):
-#	pass
 
+##########################
 ## CHARACTER GENERATION ##
+##########################
+
 # class for characters that are encountered in the game
 class Character(object):
 	
