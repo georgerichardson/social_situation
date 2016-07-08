@@ -22,7 +22,6 @@ class Engine(object):
 		self.characters = []
 	
 	def the_time(self):
-	
 		pass
 		
 	def generate(self):
@@ -36,6 +35,8 @@ class Engine(object):
 	def play(self):
 		ply_stats = self.player.ply_stats
 		while ply_stats("cont") > 0 && ply_stats("alc") < 90:
+			
+			
 		
 		
 class Interaction(object):
@@ -56,27 +57,50 @@ class Interaction(object):
 		print confirmations[random.randint(0, len(confirmations)-1)]
 	
 	def run_away(self):
-		excuses = ["You look into a different part of the room and wave. \"Sorry, I just have to say hi to my friend\", you lie. \"I'll be back over in a minutes\", you lie again as you march off to an empty part of the party."
+		excuses = ["You look over to a different part of the room and wave. \"Sorry, I just have to say hi to my friend\", you lie. \"I'll be back over in a minutes\", you lie again as you march off to an empty part of the party."
 					]
 		
 	def outcomes(self):
-		
+		pass
 		
 	def next_move(self):
 		pass
 	
 	def drink(self):
-		drink = raw_input("Would you like a drink? (y/n): ")
-		if drink == "y":
-			print "You pick up another beer and begin to sip it down."
-			self.player.ply_stats['alc'] += 10
-			if 75 > self.ply_stats['alc'] > 0:
-				self.ply_stats['cont'] = (10.0/75.0) * self.ply_stats['alc']
-			
-		elif drink == "n"
-			print "You decide to hold out a bit longer for another drink. Maybe you can make it through the night."
+		print "Would you like a drink?"
+		while True:
+			dram = raw_input("(y/n): ")
+			if dram == "y":
+				print "You pick up a beer and begin to sip it down."
+				self.player.ply_stats['alc'] += 10
+				if self.ply_stats['alc'] <= 75:
+					self.ply_stats['cont'] = (10.0/75.0) * self.ply_stats['alc']
+				elif self.ply_stats['alc'] > 75:
+					self.ply_stats['cont'] = (10.0/75.0) * self.ply_stats['alc']
+				break		
+			elif dram == "n":
+				print "You decide to hold out a bit longer for another drink. Maybe you can make it through the night."
+				break
+			else:
+				print "Sorry?"
 	
 	def interact(self):
+		self.meeting()
+		print "Stay and chat with %s?" % self.ch_name
+		while True:
+			x = raw_input("(y/n): ")
+			if x == 'y':
+				self.talk()
+				self.outcomes()
+				break
+			elif
+				self.run_away()
+				break
+			else:
+				print "You're confused. Try again."
+		self.drink()
+			
+		
 		
 	
 	
