@@ -244,7 +244,14 @@ class Boring(Characteristic):
 class Character(object):
 	
 	# list of all possible characteristics
-	all_characteristics = [Similarity(ch_name = None, ply_name = None),
+
+	
+	# number of possible characteristics					
+	no_characteristics = 1
+	
+	# initialise placeholders for character name and characteristics
+	def __init__(self):
+		self.all_characteristics = [Similarity(ch_name = None, ply_name = None),
 						Interesting(ch_name = None, ply_name = None),
 						SelfCentered(ch_name = None, ply_name = None),
 						KnowItAll(ch_name = None, ply_name = None),
@@ -252,20 +259,15 @@ class Character(object):
 						Drunk(ch_name = None, ply_name = None),
 						Boring(ch_name = None, ply_name = None)
 						]
-	
-	# number of possible characteristics					
-	no_characteristics = 2
-	
-	# initialise placeholders for character name and characteristics
-	def __init__(self):
 		self.ch_name = self.ch_name()
 		self.ch_stats = self.ch_characteristics()
+
 		
 		
 	# randomly assign gender and generate a character name 	
 	def ch_name(self):
 		
-		gender = random.randint(1,2)
+		gender = randint(1,2)
 		if gender == 1:
 			gender = 'Male'
 		elif gender == 2:
@@ -279,9 +281,9 @@ class Character(object):
 	def ch_characteristics(self):
 		
 		ch_stats = []
-		choices = list(all_characteristics)		
+		choices = list(self.all_characteristics)		
 		# loop through allowed number of characteristics and randomly select from "choices"
-		for i in xrange(no_characteristics):
+		for i in xrange(self.no_characteristics):
 			ch_id = randint(0,len(choices)-1)
 			ch_stats.append(choices[ch_id])
 			del choices[ch_id]

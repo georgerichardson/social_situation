@@ -1,4 +1,5 @@
 import characters as chars
+from random import randint
 
 # class Map(object):
 # 
@@ -16,9 +17,9 @@ import characters as chars
 		
 
 class Engine(object):
-	def __init__(self, player, characters):
+	def __init__(self):
 		self.player = chars.Player()
-		self.ply_name = self.player.ply_name()
+		self.ply_name = self.player.ply_name
 		self.characters = []
 	
 	def the_time(self):
@@ -34,10 +35,13 @@ class Engine(object):
 
 	def play(self):
 		ply_stats = self.player.ply_stats
-		while ply_stats("cont") > 0 && ply_stats("alc") < 90:
-			
-			
-		
+		i = 0
+		while ply_stats["cont"] > 0 and ply_stats["alc"] < 90:
+			self.generate()
+			self.character = self.characters[0]
+			attempt = Interaction(self.player, self.character)
+			attempt.interact()
+			i += 1
 		
 class Interaction(object):
 		
@@ -50,11 +54,11 @@ class Interaction(object):
 		greetings = ["You stand around sheepishly and accidentally make eye contact with someone a few feet away. They take this as a signal for engagement and turn towards you with an outstretched hand to shake. \"Hi, I\'m %s!\", they say as you shake hands." % self.ch_name,
 					"You stand by a table and stare into space imagining all the useful things you could be getting on with. Just as you begin to yawn, someone introduces themself to you. \"Hi, I'm %s\", they say. You try to stifle the yawn to respond," % self.ch_name
 					]
-		print greetings[random.randint(0, len(greetings)-1)]
+		print greetings[randint(0, len(greetings)-1)]
 	
 	def talk(self):
 		confirmations = ["You stay to chat with %s." % self.ch_name]
-		print confirmations[random.randint(0, len(confirmations)-1)]
+		print confirmations[randint(0, len(confirmations)-1)]
 	
 	def run_away(self):
 		excuses = ["You look over to a different part of the room and wave. \"Sorry, I just have to say hi to my friend\", you lie. \"I'll be back over in a minutes\", you lie again as you march off to an empty part of the party."
@@ -93,14 +97,15 @@ class Interaction(object):
 				self.talk()
 				self.outcomes()
 				break
-			elif
+			elif x == 'n':
 				self.run_away()
 				break
 			else:
 				print "You're confused. Try again."
 		self.drink()
 			
-		
+a_game = Engine()
+a_game.play()	
 		
 	
 	
