@@ -34,21 +34,29 @@ class Engine(object):
 #		pass
 
 	def play(self):
+		print "You've been dragged along to a party by your housemate. They've told you \"It's good to get out\". As you as you arrive together, your housemate abandons you to fend for yourself."
 		ply_stats = self.player.ply_stats
 		i = 0
 		while ply_stats["cont"] > 0 and ply_stats["alc"] < 90:
 			self.generate()
-			self.character = self.characters[0]
+			self.character = self.characters[i]
 			attempt = Interaction(self.player, self.character)
 			attempt.interact()
 			i += 1
+		if ply_stats["cont"] < 0:
+			print "You're so miserable that you decide to leave the party"
+		elif ply_stats['alc'] > 90:
+			print "You had one too many and staggered around until someone called you a cab home."
+		else:
+			print "You won!"
 		
 class Interaction(object):
 		
 	def __init__(self, player, character):
 		self.player = player
 		self.ply_stats = player.ply_stats
-		self.ch_name = character.ch_name		
+		self.ch_name = character.ch_name
+		self.character = character		
 		
 	def meeting(self):
 		greetings = ["You stand around sheepishly and accidentally make eye contact with someone a few feet away. They take this as a signal for engagement and turn towards you with an outstretched hand to shake. \"Hi, I\'m %s!\", they say as you shake hands." % self.ch_name,
@@ -65,7 +73,8 @@ class Interaction(object):
 					]
 		
 	def outcomes(self):
-		pass
+		i = self.character.meeting(self.player.ply_name)
+		return i
 		
 	def next_move(self):
 		pass
@@ -95,7 +104,8 @@ class Interaction(object):
 			x = raw_input("(y/n): ")
 			if x == 'y':
 				self.talk()
-				self.outcomes()
+				damage = self.outcomes()
+				self.player.ply_stats['cont'] += damage
 				break
 			elif x == 'n':
 				self.run_away()
